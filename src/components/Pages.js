@@ -10,8 +10,9 @@ function Pages() {
   return (
     <Routes>
       <Route index element = { <Home /> } />
-      <Route path="/products" element={ <Products /> } />
-      <Route path="/productdetails" element={ <ProductDetails /> } /> 
+      <Route path="/products" element={ <Products /> } >
+        <Route path=":id" element={ <ProductDetails /> } /> 
+      </Route>
       <Route path="/cart" element={ <Cart /> } /> 
       <Route path="/checkout" element={ <Checkout /> } />
       <Route path="*" element={ <NotFound /> } /> 

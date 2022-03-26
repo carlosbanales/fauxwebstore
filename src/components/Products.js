@@ -1,7 +1,10 @@
+import  { Outlet } from 'react-router-dom';
+
 function Products() {
     return (
         <div>
-            Products page
+            Products Page
+            <Outlet />
         </div>   
     )
 };

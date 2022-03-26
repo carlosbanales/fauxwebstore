@@ -1,15 +1,14 @@
-import { BrowserRouter } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import './App.css';
-import Pages from './components/Pages';
+import Navigation from './components/Navigation';
 
 function App() {
   const [storeData, setStoreData] = useState();
 
   async function fetchData() {
     try {
-      const promise = await fetch('https://fakestoreapi.com/products');
-      const data = await promise.json();
+      const res = await fetch('https://fakestoreapi.com/products');
+      const data = await res.json();
       console.log(data);
     } catch(error) {
       console.log(error);
@@ -21,9 +20,7 @@ function App() {
   });
 
   return (
-    <BrowserRouter>
-      <Pages />
-    </BrowserRouter>
+    <Navigation />
   );
 }
 

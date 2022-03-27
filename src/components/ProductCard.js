@@ -3,7 +3,7 @@ function ProductCard(props) {
     <div className='product_card'>
         <h3 className='title'>{props.Title}</h3>
         <img className="product_image" src={props.Img}/>
-        <p className='price'>{props.Price}</p>
+        <p className='price'>${props.Price}</p>
     </div>
   );
 }

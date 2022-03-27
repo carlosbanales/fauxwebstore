@@ -3,7 +3,7 @@ import './App.css';
 import Navigation from './components/Navigation';
 
 function App() {
-  const [storeData, setStoreData] = useState();
+  const [storeData, setStoreData] = useState([]);
 
   async function fetchData() {
     try {

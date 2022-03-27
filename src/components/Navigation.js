@@ -7,13 +7,13 @@ import Checkout from './Checkout';
 import NotFound from './NotFound';
 import Home from './Home';
 
-function Navigation() {
+function Navigation({products}) {
   return (
     <>
       <Navbar />
       <Routes>
         <Route index element={ <Home /> } />
-        <Route path="/products" element={ <Products /> } >
+        <Route path="/products" element={ <Products allProducts={products} /> } >
           <Route path=":id" element={ <ProductDetails /> } /> 
         </Route>
         <Route path="/cart" element={ <Cart /> } /> 

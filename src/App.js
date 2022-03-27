@@ -9,7 +9,7 @@ function App() {
     try {
       const res = await fetch('https://fakestoreapi.com/products');
       const data = await res.json();
-      console.log(data);
+      setStoreData(data);
     } catch(error) {
       console.log(error);
     }
@@ -17,10 +17,12 @@ function App() {
 
   useEffect(() => {
     fetchData();
-  });
+  }, []);
 
   return (
-    <Navigation />
+    <Navigation 
+      products={storeData}
+    />
   );
 }
 

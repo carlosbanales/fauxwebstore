@@ -1,11 +1,10 @@
-import  { Outlet } from 'react-router-dom';
 import ProductCard from './ProductCard';
+import { Outlet } from 'react-router-dom';
 
 function Products({allProducts}) {
   console.log(allProducts);
   return (
     <>
-      <Outlet />
       {allProducts.map((item) => (
         <ProductCard
           key={item.id}

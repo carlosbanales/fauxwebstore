@@ -4,10 +4,11 @@ import Navigation from './components/Navigation';
 
 function App() {
   const [storeData, setStoreData] = useState([]);
+  const [path, setPath] = useState('products');
 
-  async function fetchData() {
+  async function fetchData(thePath) {
     try {
-      const res = await fetch('https://fakestoreapi.com/products');
+      const res = await fetch(`https://fakestoreapi.com/${thePath}`);
       const data = await res.json();
       setStoreData(data);
     } catch(error) {
@@ -16,8 +17,8 @@ function App() {
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    fetchData(path);
+  }, [path]);
 
   return (
     <Navigation 

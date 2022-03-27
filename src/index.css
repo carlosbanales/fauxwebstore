@@ -22,5 +22,12 @@ nav a {
 }
 
 .product_image {
-  width: 100px;
+  width: 200px;
+
+}
+
+.product_card {
+  background-color: beige;
+  width: 250px;
+  text-align: center;
 }

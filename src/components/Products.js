@@ -5,6 +5,7 @@ function Products({allProducts}) {
   console.log(allProducts);
   return (
     <>
+      <Outlet />
       {allProducts.map((item) => (
         <ProductCard
           key={item.id}

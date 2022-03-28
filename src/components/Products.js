@@ -11,6 +11,7 @@ function Products({allProducts}) {
       {allProducts.map((item) => (
         <ProductCard
           key={item.id}
+          productId={item.id}
           Title={item.title}
           Price={item.price}
           Img={item.image}

@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import ProductCard from './ProductCard';
 import { Outlet } from 'react-router-dom';
 
 function Products({allProducts}) {
-  console.log(allProducts);
+  const [id, setId] = useState('');
+  console.log(id);
   return (
     <>
       <Outlet />
@@ -12,6 +14,7 @@ function Products({allProducts}) {
           Title={item.title}
           Price={item.price}
           Img={item.image}
+          getId={setId}
         />
       ))}
     </>   

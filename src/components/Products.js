@@ -2,9 +2,14 @@ import { useState } from 'react';
 import ProductCard from './ProductCard';
 import { Outlet } from 'react-router-dom';
 
-function Products({allProducts}) {
+function Products({allProducts, setPath}) {
   const [id, setId] = useState('');
-  console.log(id);
+
+  setPath('products');
+
+  if (id !== '')
+    console.log(id);
+
   return (
     <>
       <Outlet />
@@ -18,7 +23,7 @@ function Products({allProducts}) {
           getId={setId}
         />
       ))}
-    </>   
+    </>
   )
 };
 

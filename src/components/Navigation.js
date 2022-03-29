@@ -7,7 +7,7 @@ import Checkout from './Checkout';
 import NotFound from './NotFound';
 import Home from './Home';
 
-function Navigation({products, setPathFunc}) {
+function Navigation({products}) {
   return (
     <>
       <Navbar />
@@ -15,7 +15,7 @@ function Navigation({products, setPathFunc}) {
         <Route index element={ <Home /> } />
         <Route 
           path="/products"
-          element={ <Products allProducts={products} setPath={setPathFunc}/> }
+          element={ <Products allProducts={products} /> }
         />
         <Route path="/products/:id" element={ <ProductDetails /> } /> 
         <Route path="/cart" element={ <Cart /> } /> 

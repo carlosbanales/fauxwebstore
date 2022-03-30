@@ -25,8 +25,6 @@ function ProductDetails({products}) {
   
   return (  
     <>
-    <div>...details</div>
-    { params.id }
       { (productFlag && pathFlag) &&
         <div className='product_card'>
           <h3 className='title'>{allProducts[path].title}</h3>

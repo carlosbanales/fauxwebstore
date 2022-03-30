@@ -18,7 +18,7 @@ function ProductDetails({products}) {
   if (allProducts.length > 0 && !pathFlag) {
     console.log('this is allProduct below');
     console.log(allProducts);
-    setPath(params.id);
+    setPath(params.id - 1);
     setPathFlag(true);
   }
   

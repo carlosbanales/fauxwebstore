@@ -1,26 +1,24 @@
-import { useState } from 'react';
 import ProductCard from './ProductCard';
 import { Outlet } from 'react-router-dom';
 
-function Products({allProducts}) {
-  const [id, setId] = useState('');
-
-  if (id !== '')
-    console.log(id);
-
+function Products({products, loading, getId}) {
   return (
     <>
-      <Outlet />
-      {allProducts.map((item) => (
-        <ProductCard
-          key={item.id}
-          productId={item.id}
-          Title={item.title}
-          Price={item.price}
-          Img={item.image}
-          getId={setId}
-        />
-      ))}
+      { loading ? <div>...loading</div> :
+      <>
+        <Outlet />
+        {products.map((item) => (
+          <ProductCard
+            key={item.id}
+            id={item.id}
+            setId={getId}
+            Title={item.title}
+            Price={item.price}
+            Img={item.image}
+          />
+        ))}
+      </>
+      }
     </>
   )
 };

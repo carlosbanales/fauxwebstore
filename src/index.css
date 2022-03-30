@@ -13,7 +13,7 @@ code {
 }
 
 nav {
-  background-color: beige;
+  background-color: lightgrey;
   padding: 20px;
 }
 
@@ -27,7 +27,7 @@ nav a {
 }
 
 .product_card {
-  background-color: beige;
+  background-color: lightgrey;
   width: 250px;
   text-align: center;
 }

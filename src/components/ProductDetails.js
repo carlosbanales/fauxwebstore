@@ -29,6 +29,7 @@ function ProductDetails({products}) {
         <div className='product_card'>
           <h3 className='title'>{allProducts[path].title}</h3>
           <img className="product_image" src={allProducts[path].image}/>
+          <p className='price'>Description: {allProducts[path].description}</p>
           <p className='price'>Price: ${allProducts[path].price}</p>
         </div>
       }

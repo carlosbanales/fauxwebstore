@@ -37,7 +37,7 @@ function Navigation() {
         <Route index element={ <Home /> } />
         <Route
           path="/products"
-          element={ <Products products={productList} />}
+          element={ <Products products={productList} /> }
         />
         <Route
           path="/products/:id"

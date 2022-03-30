@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom";
 import { useState } from 'react';
 
 function ProductDetails({products}) {
-  const [loading, setLoading] = useState(false);
   const [allProducts, setAllProducts] = useState([]);
   const [productFlag, setProductFlag] = useState(false);
   const [pathFlag, setPathFlag] = useState(false);

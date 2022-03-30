@@ -6,7 +6,7 @@ function ProductCard(props) {
   const [itemId, setItemId] = useState('');
   const navigate = useNavigate();
   
-  // stops infinite loop
+  // stops infinite loop 
   itemId === '' && setItemId(Item.id);
 
   return (

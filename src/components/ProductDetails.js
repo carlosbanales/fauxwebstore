@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useState } from 'react';
 
 function ProductDetails({products}) {
@@ -6,32 +6,42 @@ function ProductDetails({products}) {
   const [productFlag, setProductFlag] = useState(false);
   const [pathFlag, setPathFlag] = useState(false);
   const [path, setPath] = useState('');
-  
   const params = useParams();
-  console.log('Product Details Component ran');
-
+  console.log('ProductDetails rendering...');
+  // is it rerender or rerunning code??
   if (products.length > 0 && !productFlag) {
     setAllProducts(products);
+    console.log('set allProducts to products');
+    console.log('allProducts state changed, rerendering...');
     // setFlag() stops infinite loop
     setProductFlag(true);
   }
+  // second if statement depends on the first statement
   if (allProducts.length > 0 && !pathFlag) {
-    console.log('this is allProduct below');
-    console.log(allProducts);
+    console.log('allProducts: ', allProducts);
     setPath(params.id - 1);
+    console.log('path state changed, rerendering');
+    console.log('set path to params.id - 1');
     setPathFlag(true);
   }
   
+  if (path !== '') {
+    console.log('path: ', path);
+  }
+
   return (  
     <>
       { (productFlag && pathFlag) &&
-        <div className='product_card'>
-          <h3 className='title'>{allProducts[path].title}</h3>
-          <img className="product_image" src={allProducts[path].image}/>
-          <p className='category'>Category: {allProducts[path].category}</p>
-          <p className='description'>Description: {allProducts[path].description}</p>
-          <p className='price'>Price: ${allProducts[path].price}</p>
-        </div>
+        <>
+          <Link to='/products'>back</Link>
+          <div className='product_card'>
+            <h3 className='title'>{allProducts[path].title}</h3>
+            <img className="product_image" src={allProducts[path].image}/>
+            <p className='category'>Category: {allProducts[path].category}</p>
+            <p className='description'>Description: {allProducts[path].description}</p>
+            <p className='price'>Price: ${allProducts[path].price}</p>
+          </div>
+        </>
       }
     </>
   );

@@ -9,7 +9,6 @@ import NotFound from './NotFound';
 import Home from './Home';
 
 function Navigation() {
-  const [id, setId] = useState('');
   const [productList, setProductList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   
@@ -30,7 +29,6 @@ function Navigation() {
     fetchData();
   }, []);
   
-  id !== '' && console.log('value to set path on useNav: '+id);
   return (
     <>
       <Navbar />
@@ -39,7 +37,7 @@ function Navigation() {
         <Route index element={ <Home /> } />
         <Route
           path="/products"
-          element={ <Products getId={setId} products={productList} />}
+          element={ <Products products={productList} />}
         />
         <Route
           path="/products/:id"

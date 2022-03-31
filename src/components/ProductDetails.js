@@ -30,7 +30,7 @@ function ProductDetails({products}) {
           <Link to='/products'>back</Link>
           <div className='product_card'>
             <h3 className='title'>{allProducts[path].title}</h3>
-            <img className="product_image" src={allProducts[path].image}/>
+            <img className="product_image" src={allProducts[path].image} alt='prod_img' />
             <p className='category'>Category: {allProducts[path].category}</p>
             <p className='description'>Description: {allProducts[path].description}</p>
             <p className='price'>Price: ${allProducts[path].price}</p>

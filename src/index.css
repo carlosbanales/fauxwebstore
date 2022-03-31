@@ -16,18 +16,3 @@ nav {
   background-color: lightgrey;
   padding: 20px;
 }
-
-nav a {
-  margin-right: 20px;
-}
-
-.product_image {
-  width: 200px;
-
-}
-
-.product_card {
-  background-color: lightgrey;
-  width: 250px;
-  text-align: center;
-}

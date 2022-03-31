@@ -1,0 +1,33 @@
+nav a {
+    margin-right: 20px;
+  }
+  
+  .product_image {
+    width: 130px;
+    transition: all 0.3s ease; 
+  }
+  .product_image:hover {
+    transform: scale(1.1);
+  }
+  
+  .products_container {
+    width: 100%;
+    min-height: 80vh;
+    background-color: white;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    padding: 10px;
+  }
+  
+  .product_card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: lightgrey;
+    width: 220px;
+    padding: 20px;
+    border: 10px;
+    margin: 20px 20px;
+  }

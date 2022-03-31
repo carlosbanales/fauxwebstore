@@ -4,19 +4,20 @@ import { Outlet } from 'react-router-dom';
 function Products({products, loading}) {
   return (
       <>
+        <Outlet />
         { loading ? <div>...loading</div> :
-        <div className="products_container">
-          <Outlet />
-          {products.map((item) => (
-            <ProductCard
-              key={item.id}
-              Item = {item}
-              Title={item.title}
-              Price={item.price}
-              Img={item.image}
-            />
-          ))}
-        </div>}
+            <div className='products_container'>
+                {products.map((item) => (
+                    <ProductCard
+                        key={item.id}
+                        Item_Id={item.id}
+                        Title={item.title}
+                        Price={item.price}
+                        Img={item.image}
+                    />
+                ))}
+            </div>
+        }
       </>
   )
 };

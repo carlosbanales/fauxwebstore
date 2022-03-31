@@ -1,4 +1,4 @@
-## Final Project for Bitwise
+## Final project for Bitwise
 
 This project was made using [Reactjs](https://reactjs.org/) and [The Fake Store Api](https://fakestoreapi.com/)
 ## Available Scripts

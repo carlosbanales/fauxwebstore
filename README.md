@@ -9,5 +9,5 @@ To try it out, you can run:
 $ git clone https://github.com/carlosbanales/final_project.git
 $ cd final_project
 $ npm install
-$ npm start <!-- this starts development server--> 
+$ npm start 
  ```

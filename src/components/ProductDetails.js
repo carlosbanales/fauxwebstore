@@ -7,21 +7,15 @@ function ProductDetails({products}) {
   const [pathFlag, setPathFlag] = useState(false);
   const [path, setPath] = useState('');
   const params = useParams();
-  console.log('ProductDetails rendering...');
-  // is it rerender or rerunning code??
+
+  // setProductFlag stops infinite loop
   if (products.length > 0 && !productFlag) {
     setAllProducts(products);
-    console.log('set allProducts to products');
-    console.log('allProducts state changed, rerendering...');
-    // setFlag() stops infinite loop
     setProductFlag(true);
   }
   // second if statement depends on the first statement
   if (allProducts.length > 0 && !pathFlag) {
-    console.log('allProducts: ', allProducts);
     setPath(params.id - 1);
-    console.log('path state changed, rerendering');
-    console.log('set path to params.id - 1');
     setPathFlag(true);
   }
   

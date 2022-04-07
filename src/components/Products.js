@@ -1,13 +1,14 @@
 import ProductCard from './ProductCard';
-import { useState, useEffect } from 'react';
+import {  useEffect } from 'react';
 import { Outlet, useParams} from 'react-router-dom';
 
 function Products({products, loading, setPath}) {
-  const [flag, setFlag] = useState(true);
   const params = useParams();
 
-  // have to find a way to update the path without the state error
   console.log('Product component began parsed');
+  
+  // useEffect hook help stop warning for bad state call, need to find out
+  // how to stop unnessesary rerendering 
   useEffect(() => {
     if(!loading){
       console.log("setPath to params.products");

@@ -1,7 +1,20 @@
 import ProductCard from './ProductCard';
-import { Outlet } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Outlet, useParams} from 'react-router-dom';
 
-function Products({products, loading}) {
+function Products({products, loading, setPath}) {
+  const [flag, setFlag] = useState(true);
+  const params = useParams();
+
+  // have to find a way to update the path without the state error
+  console.log('Product component began parsed');
+  useEffect(() => {
+    if(!loading){
+      console.log("setPath to params.products");
+      setPath(params.products);
+    }
+  });
+
   return (
       <>
         <Outlet />
@@ -18,6 +31,8 @@ function Products({products, loading}) {
                 ))}
             </div>
         }
+          
+      { console.log("Product.js finsished parsing") }
       </>
   )
 };

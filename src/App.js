@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useParams } from 'react-router-dom';
 import { useEffect, useState} from 'react';
 import Navbar from './components/Navbar';
 import Products from './components/Products';
@@ -12,11 +12,14 @@ import Home from './components/Home';
 function App() {
   const [productList, setProductList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  
-  async function fetchData() {
+  const [currentPath, setCurrentPath] = useState('');    
+
+  console.log('App js file parsing began');
+
+  async function fetchData(a_path) {
     try {
       setIsLoading(true);
-      const res = await fetch(`https://fakestoreapi.com/products`);
+      const res = await fetch(`https://fakestoreapi.com/${a_path}`);
       const data = await res.json();
       setProductList(data);
       console.log('useEffect ran');
@@ -27,17 +30,20 @@ function App() {
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    currentPath !== '' && fetchData(currentPath);
+  }, [currentPath]);
   
   return (
     <>
       <Navbar />
       <Routes>
         <Route index element={ <Home /> } />
-        <Route
-          path="/products"
-          element={ <Products products={productList} loading={isLoading}/> }
+        <Route path="/:products"
+          element={ <Products
+            products={productList}
+            loading={isLoading}
+            setPath={setCurrentPath}
+          />}
         />
         <Route
           path="/products/:id"
@@ -47,6 +53,7 @@ function App() {
         <Route path="/checkout" element={ <Checkout /> } />
         <Route path="*" element={ <NotFound /> } /> 
       </Routes>
+      { console.log("App.js finished parsing") }
     </>
   )
 };

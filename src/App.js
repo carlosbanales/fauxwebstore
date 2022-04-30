@@ -1,5 +1,5 @@
 import './App.css';
-import { Routes, Route, useParams } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { useEffect, useState} from 'react';
 import Navbar from './components/Navbar';
 import Products from './components/Products';
@@ -11,27 +11,27 @@ import Home from './components/Home';
 
 function App() {
   const [productList, setProductList] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [currentPath, setCurrentPath] = useState('');    
+	const [cartList, setCartList] = useState([]);
 
   console.log('App js file parsing began');
 
-  async function fetchData(a_path) {
+  async function fetchData() {
     try {
-      setIsLoading(true);
-      const res = await fetch(`https://fakestoreapi.com/${a_path}`);
-      const data = await res.json();
-      setProductList(data);
+			const cartResults = await fetch('https://fakestoreapi.com/carts');
+			const cartData = await cartResults.json();
+      const productResults = await fetch('https://fakestoreapi.com/products');
+      const productData = await productResults.json();
+      setProductList(productData);
+			setCartList(cartData);
       console.log('useEffect ran');
-      setIsLoading(false);
     } catch(error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    currentPath !== '' && fetchData(currentPath);
-  }, [currentPath]);
+    fetchData();
+  }, []);
   
   return (
     <>
@@ -41,15 +41,13 @@ function App() {
         <Route path="/:products"
           element={ <Products
             products={productList}
-            loading={isLoading}
-            setPath={setCurrentPath}
           />}
         />
         <Route
           path="/products/:id"
           element={ <ProductDetails products={productList} /> }
         /> 
-        <Route path="/cart" element={ <Cart /> } /> 
+        <Route path="/cart" element={ <Cart carts={cartList} /> } /> 
         <Route path="/checkout" element={ <Checkout /> } />
         <Route path="*" element={ <NotFound /> } /> 
       </Routes>

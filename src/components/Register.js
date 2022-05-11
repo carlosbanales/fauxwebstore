@@ -30,7 +30,6 @@ function Register() {
 	useEffect(() => {
 		const result = USER_REGEX.test(user);
 		console.log(result);
-		console.log(user);
 		setValidName(result);
 	}, [user])
 
@@ -50,17 +49,11 @@ function Register() {
 	return (
 		<section>
 			<p ref={errRef} className={error ? "errmsg" :
-			"offscreen"} aria-live="assertive">{error}</p>
+					"offscreen"} aria-live="assertive">{error}</p>
 			<h3>Don't have an account, sign up below!</h3>
 			<form>
 				<label htmlFor="username">
 					Username:
-					<span className={validName ? "valid" : "hide"}>
-						OK
-					</span>
-					<span className={validName || !user ? "hide" : "invalid"}>
-						Invalid
-					</span>
 				</label>
 				<input
 					type="text"
@@ -74,12 +67,49 @@ function Register() {
 					onFocus={() => setUserFocus(true)}
 					onBlur={() => setUserFocus(false)}
 				/>
+				<span className={validName ? "valid" : "hide"}>
+					OK
+				</span>
+				<span className={validName || !user ? "hide" : "invalid"}>
+					Invalid
+				</span>
 				<p id="uidnote" className={userFocus && user && !validName
 				? "instructions" : "offscreen"}>
 					4 to 24 characters.<br />
 					Must begin with a letter.<br />
 					Letters, numbers, underscores, hyphens allowed.
-				</p>	
+				</p>
+				<label htmlFor="password">
+					Password:
+				</label>
+				<input 
+					type="password"
+					id="passord"
+					onChange={(e) => setPwd(e.target.value)}
+					required
+					aria-invalid={validPwd ? "false" : "true"}
+					aria-describedby="pwdnote"
+					onFocus={() => setPwdFocus(true)}
+					onBlur={() => setPwdFocus(false)}
+				/>
+				<span className={validPwd ? "valid" : "hide"}>
+					OK
+				</span>
+				<span className={validPwd || !pwd ? "hide" : "invalid"}>
+					Invalid
+				</span>
+				<p id="pwdnote"
+				className={pwdFocus && !validPwd ? "instructions" : "offscreen"}>
+					8 to 24 characters.<br />
+					Must include uppercase and lowercase letters, and lowercase letters,
+					a number and a special character.<br />
+					Allowed special characters:	
+					<span aria-label="at symbol">@</span>
+					<span aria-label="exclamation mark">!</span>
+					<span aria-label="hashtag">#</span>
+					<span aria-label="percent">%</span>
+					<span aria-label="dollar sign">$</span>
+				</p>
 			</form>
 		</section>
 	);

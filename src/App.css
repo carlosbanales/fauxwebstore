@@ -81,3 +81,22 @@ nav a {
 .line {
   display: inline-block;
 }
+
+section {
+		width: 75%;
+    max-width: 320px;
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1rem;
+    background-color: lightgrey;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex-grow: 1;
+    padding-bottom: 1rem;
+}

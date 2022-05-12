@@ -29,14 +29,11 @@ function Register() {
 
 	useEffect(() => {
 		const result = USER_REGEX.test(user);
-		console.log(result);
 		setValidName(result);
 	}, [user])
 
 	useEffect(() => {
 		const result = PWD_REGEX.test(pwd);
-		console.log(result);
-		console.log(pwd);
 		setValidPwd(result);
 		const match = pwd === matchPwd;
 		setValidMatch(match);
@@ -110,6 +107,32 @@ function Register() {
 					<span aria-label="percent">%</span>
 					<span aria-label="dollar sign">$</span>
 				</p>
+				<label htmlFor="confirm_pwd">
+					Confirm Password:
+				</label>
+				<input 
+					type="password"
+					id="confirm_pwd"
+					onChange={(e) => setMatchPwd(e.target.value)}
+					required
+					aria-invalid={validMatch ? "false" : "true"}
+					aria-describedby="confirmnote"
+					onFocus={() => setMatchFocus(true)}
+					onBlur={() => setMatchFocus(false)}
+				/>
+				<span className={validMatch && matchPwd ? "valid" : "hide"}>
+					OK
+				</span>
+				<span className={validMatch || !pwd ? "hide" : "invalid"}>
+					Invalid
+				</span>
+				<p id="confirmnote"
+				className={matchFocus && !validMatch ? "instructions" : "offscreen"}>
+					Must match first password.<br />
+					</p>
+					<button disabled={!validName || !validPwd || !validMatch ? true : false}>
+						Sign Up
+					</button>
 			</form>
 		</section>
 	);

@@ -13,7 +13,7 @@ function App() {
   const [productList, setProductList] = useState([]);
 	const [cartList, setCartList] = useState([]);
 
-  console.log('App js file parsing began');
+  console.log('App js file ran');
 
   async function fetchData() {
     try {
@@ -51,7 +51,6 @@ function App() {
         <Route path="/checkout" element={ <Checkout /> } />
         <Route path="*" element={ <NotFound /> } /> 
       </Routes>
-      { console.log("App.js finished parsing") }
     </>
   )
 };

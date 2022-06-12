@@ -2,10 +2,13 @@ import { useRef, useState, useEffect } from 'react';
 
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
+const REGISTER_URL = 'https://fakestoreapi.com/users';
 
 function Register() {
 	const userRef = useRef();
 	const errRef = useRef();
+
+	const [email, setEmail] = useState('email');
 
 	const [user, setUser] = useState('');
 	const [validName, setValidName] = useState(false);
@@ -14,8 +17,7 @@ function Register() {
 	const [pwd, setPwd] = useState('');
 	const [validPwd, setValidPwd] = useState(false);
 	const [pwdFocus, setPwdFocus] = useState(false);
-
-
+	
 	const [matchPwd, setMatchPwd] = useState('');
 	const [validMatch, setValidMatch] = useState(false);
 	const [matchFocus, setMatchFocus] = useState(false);
@@ -53,8 +55,42 @@ function Register() {
 		}
 		console.log(user, pwd);
 		setSuccess(true);
+		try {
+			await fetch('https://fakestoreapi.com/users',{
+				headers:{
+					"Content-Type":"application/json"
+        },
+				method:"POST",
+				body:JSON.stringify(
+					{
+						email: 'carloscruz@gmail.com',
+						username: user,
+						password: pwd,
+						name:{
+							firstname: 'Banales',
+							lastname: 'Carlos'
+						},
+						address:{
+							city: 'Imperial',
+							street: '613 North E Street',
+							number: 3,
+							zipcode: '92251',
+							geolocation:{
+								lat: '50.5677',
+								long: '-40.3159'
+							}
+						},
+						phone: '1-570-236-7043'
+					}
+				)
+			})
+				.then(res=>res.json())
+				.then(json=>console.log(json))
+		} catch(error) {
+			console.log(error);
+		}
 	}
-
+// add a link at line 69
 	return (
 		<>
 			{success ? (
@@ -149,11 +185,13 @@ function Register() {
 							Invalid
 						</span>
 						<p id="confirmnote"
-							className={matchFocus && !validMatch ? "instructions" : "offscreen"}>
+							className={matchFocus && !validMatch ?
+							"instructions" : "offscreen"}>
 							Must match first password.<br />
 						</p>
-						<button disabled={!validName || !validPwd || !validMatch ? true : false}>
-							Sign Up
+						<button
+							disabled={!validName || !validPwd || !validMatch ? true:false}>
+								Sign Up
 						</button>
 					</form>
 				</section>

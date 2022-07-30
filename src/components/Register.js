@@ -8,7 +8,8 @@ function Register() {
 	const userRef = useRef();
 	const errRef = useRef();
 
-	const [email, setEmail] = useState('email');
+	const [email, setEmail] = useState('');
+	const [emailFocus, setEmailFocus] = useState(false);
 
 	const [user, setUser] = useState('');
 	const [validName, setValidName] = useState(false);
@@ -27,6 +28,7 @@ function Register() {
 
 	useEffect(() => {
 		userRef.current.focus();
+		console.log("user focus useeffect ran");
 	},[])
 
 	useEffect(() => {
@@ -63,7 +65,7 @@ function Register() {
 				method:"POST",
 				body:JSON.stringify(
 					{
-						email: 'carloscruz@gmail.com',
+						email: email,
 						username: user,
 						password: pwd,
 						name:{
@@ -107,6 +109,18 @@ function Register() {
 							"offscreen"} aria-live="assertive">{error}</p>
 					<h3>Don't have an account, sign up below!</h3>
 					<form onSubmit={handleSubmit}>
+						<label htmlFor="email">
+							Email:
+						</label>
+						<input
+							type="text"
+							id="email"
+							autoComplete="off"
+							onChange={(e) => setEmail(e.target.value)}
+							required
+							onFocus={() => setEmailFocus(true)}
+							onBlur={() => setEmailFocus(true)}
+						/>
 						<label htmlFor="username">
 							Username:
 						</label>

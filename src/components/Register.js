@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 
+const EMAIL_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]/;
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const REGISTER_URL = 'https://fakestoreapi.com/users';
@@ -9,6 +10,7 @@ function Register() {
 	const errRef = useRef();
 
 	const [email, setEmail] = useState('');
+	const [validEmail, setValidEmail] = useState(false);
 	const [emailFocus, setEmailFocus] = useState(false);
 
 	const [user, setUser] = useState('');
@@ -30,6 +32,11 @@ function Register() {
 		userRef.current.focus();
 		console.log("user focus useeffect ran");
 	},[])
+
+	useEffect(() => {
+		const result = EMAIL_REGEX.test(email);
+		setValidEmail(result);
+	}, [email])
 
 	useEffect(() => {
 		const result = USER_REGEX.test(user);
@@ -109,19 +116,7 @@ function Register() {
 							"offscreen"} aria-live="assertive">{error}</p>
 					<h3>Don't have an account, sign up below!</h3>
 					<form onSubmit={handleSubmit}>
-						<label htmlFor="email">
-							Email:
-						</label>
-						<input
-							type="text"
-							id="email"
-							autoComplete="off"
-							onChange={(e) => setEmail(e.target.value)}
-							required
-							onFocus={() => setEmailFocus(true)}
-							onBlur={() => setEmailFocus(true)}
-						/>
-						<label htmlFor="username">
+						<label>
 							Username:
 						</label>
 						<input
@@ -203,6 +198,24 @@ function Register() {
 							"instructions" : "offscreen"}>
 							Must match first password.<br />
 						</p>
+						<label htmlFor="email">
+							Email:
+						</label>
+						<input
+							type="text"
+							id="email"
+							autoComplete="off"
+							onChange={(e) => setEmail(e.target.value)}
+							required
+							onFocus={() => setEmailFocus(true)}
+							onBlur={() => setEmailFocus(false)}
+						/>
+						<span className={validEmail ? "valid" : "hide"}>
+							OK
+						</span>
+						<span className={validEmail || !email ? "hide" : "invalid"}>
+							Invalid
+						</span>
 						<button
 							disabled={!validName || !validPwd || !validMatch ? true:false}>
 								Sign Up

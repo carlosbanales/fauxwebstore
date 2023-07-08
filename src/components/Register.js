@@ -1,5 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 
+//write the correct regex statement for the email
+
 const EMAIL_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]/;
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
@@ -8,10 +10,6 @@ const REGISTER_URL = 'https://fakestoreapi.com/users';
 function Register() {
 	const userRef = useRef();
 	const errRef = useRef();
-
-	const [email, setEmail] = useState('');
-	const [validEmail, setValidEmail] = useState(false);
-	const [emailFocus, setEmailFocus] = useState(false);
 
 	const [user, setUser] = useState('');
 	const [validName, setValidName] = useState(false);
@@ -24,6 +22,13 @@ function Register() {
 	const [matchPwd, setMatchPwd] = useState('');
 	const [validMatch, setValidMatch] = useState(false);
 	const [matchFocus, setMatchFocus] = useState(false);
+
+	const [email, setEmail] = useState('');
+	const [validEmail, setValidEmail] = useState(false);
+	const [emailFocus, setEmailFocus] = useState(false);
+
+	const [firstName, setFirstName] = useState('');
+	//const [firstName, ]
 
 	const [error, setError] = useState('');
 	const [success, setSuccess] = useState(false);
@@ -216,6 +221,16 @@ function Register() {
 						<span className={validEmail || !email ? "hide" : "invalid"}>
 							Invalid
 						</span>
+						<label htmlFor="Name">
+							Name
+						</label>
+						<input
+							type="text"
+							id="name"
+							autoComplete="off"
+							onChange={(e) => setFirstName(e.target.value)}
+							required
+						/>
 						<button
 							disabled={!validName || !validPwd || !validMatch ? true:false}>
 								Sign Up

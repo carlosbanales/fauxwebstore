@@ -1,5 +1,5 @@
 import ProductCard from './ProductCard';
-import { useState, useEffect } from 'react';
+// import { useState, useEffect } from 'react';
 import { Outlet, useParams} from 'react-router-dom';
 
 function Products({products}) {

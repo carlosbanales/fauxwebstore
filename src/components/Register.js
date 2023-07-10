@@ -5,7 +5,7 @@ import { useRef, useState, useEffect } from 'react';
 const EMAIL_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]/;
 const USER_REGEX = /^[a-zA-Z][a-zA-Z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-const REGISTER_URL = 'https://fakestoreapi.com/users';
+// const REGISTER_URL = 'https://fakestoreapi.com/users';
 
 function Register() {
 	const userRef = useRef();
@@ -25,10 +25,10 @@ function Register() {
 
 	const [email, setEmail] = useState('');
 	const [validEmail, setValidEmail] = useState(false);
-	const [emailFocus, setEmailFocus] = useState(false);
+//	const [emailFocus, setEmailFocus] = useState(false);
 
-	const [firstName, setFirstName] = useState('');
-	//const [firstName, ]
+	// const [firstName, setFirstName] = useState('');
+	// const [firstName, ]
 
 	const [error, setError] = useState('');
 	const [success, setSuccess] = useState(false);

@@ -25,9 +25,9 @@ function Register() {
 
 	const [email, setEmail] = useState('');
 	const [validEmail, setValidEmail] = useState(false);
-//	const [emailFocus, setEmailFocus] = useState(false);
+	const [emailFocus, setEmailFocus] = useState(false);
 
-	// const [firstName, setFirstName] = useState('');
+	const [firstName, setFirstName] = useState('');
 	// const [firstName, ]
 
 	const [error, setError] = useState('');
